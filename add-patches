@@ -23,3 +23,5 @@ java -jar build/google-compiler-*.jar --js dist/jquery.st.js --warning_level QUI
 head -n14 dist/jquery.st.js > dist/jquery.st.min.js
 cat dist/jquery.st.min.js.code >> dist/jquery.st.min.js
 rm dist/jquery.st.min.js.code
+
+cp dist/jquery.st.* .
