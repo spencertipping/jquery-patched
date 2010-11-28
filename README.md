@@ -1,6 +1,21 @@
 [jQuery](http://jquery.com/) - New Wave Javascript
 ================================
 
+Custom patch information
+-------------------------
+
+This jQuery build is an extension of the original. It includes [jquery.fix.textarea-clone](http://github.com/spencertipping/jquery.fix.textarea-clone),
+[jquery.fix.select-clone](http://github.com/spencertipping/jquery.fix.select-clone), and [jquery.fix.append-multiple](http://github.com/spencertipping/jquery.fix.append-multiple), which modify
+the behavior of the clone(), before(), after(), append(), and prepend() methods. This patched jQuery is licensed the same way as the normal jQuery is (so you can GPL the patches if you want
+to).
+
+You can build the patched version by running rake and then add-patches:
+
+    rake
+    ./add-patches
+
+The patched code will then be in `dist/jquery.st.js` and `dist/jquery.st.min.js`.
+
 What you need to build your own jQuery
 ---------------------------------------
 * Make sure that you have Java installed (if you want to build a minified version of jQuery).  

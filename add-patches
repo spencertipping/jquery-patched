@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ ! -f dist/jquery.js ]]; then
+  echo 'You need to run rake first. Patches are applied to the finished jQuery build.'
+  exit 1
+fi
+
+patch() {
+  git clone git://github.com/spencertipping/$1
+  cat $1/$1.js >> dist/jquery.st.js
+  rm -rf $1
+}
+
+cp dist/jquery.js dist/jquery.st.js
+patch jquery.fix.textarea-clone
+patch jquery.fix.select-clone
+patch jquery.fix.append-multiple
+
+rm -f dist/jquery.st.min.js
+java -jar build/google-compiler-*.jar --js dist/jquery.st.js --warning_level QUIET --js_output_file dist/jquery.st.min.js.code
+
+# This shuffle gets the original license back onto the code.
+head -n14 dist/jquery.st.js > dist/jquery.st.min.js
+cat dist/jquery.st.min.js.code >> dist/jquery.st.min.js
+rm dist/jquery.st.min.js.code
